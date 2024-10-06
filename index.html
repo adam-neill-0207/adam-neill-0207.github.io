@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Broadcast Creative Manager</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" id="about-link">About</a></li>
+                <li><a href="#" id="projects-link">Projects</a></li>
+                <li><a href="#" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Image -->
+    <section id="main-image">
+        <img src="your-main-image.jpg" alt="Broadcast Creative Projects">
+    </section>
+
+    <!-- Modals -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>About Me</h2>
+            <p>Details about your career in sports broadcasting and creative projects.</p>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Contact Me</h2>
+            <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+        </div>
+    </div>
+
+    <!-- Projects Section with Scrolling Gallery -->
+    <section id="portfolio">
+        <h2>My Projects</h2>
+        <div class="gallery-container">
+            <!-- Left Arrow -->
+            <div class="arrow left-arrow">&#8249;</div>
+
+            <!-- Scrollable gallery -->
+            <div class="gallery-wrapper">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <a href="project1-gallery.html">
+                            <img src="images/project1-thumb.jpg" alt="Project 1">
+                            <h3>Project 1</h3>
+                        </a>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="project2-gallery.html">
+                            <img src="images/project2-thumb.jpg" alt="Project 2">
+                            <h3>Project 2</h3>
+                        </a>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="project3-gallery.html">
+                            <img src="images/project3-thumb.jpg" alt="Project 3">
+                            <h3>Project 3</h3>
+                        </a>
+                    </div>
+                    <!-- Add more gallery items as needed -->
+                </div>
+            </div>
+
+            <!-- Right Arrow -->
+            <div class="arrow right-arrow">&#8250;</div>
+        </div>
+    </section>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

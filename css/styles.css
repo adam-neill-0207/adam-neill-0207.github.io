@@ -4,7 +4,10 @@ body {
   text-transform: uppercase; /* All text in uppercase */
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(180deg, rgba(245,245,245,1) 0%, rgba(220,220,220,1) 100%);
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
@@ -71,6 +74,16 @@ nav {
   text-decoration: underline;
 }
 
+/* Footer */
+.footer {
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,20,20,1) 70%, rgba(50,50,50,1) 100%);
+  height: 2vh;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
 /* Main content (image and video gallery) - Responsive with padding */
 .main-content {
   display: flex;
@@ -78,26 +91,35 @@ nav {
   gap: 20px;
   justify-content: center; /* Center the images */
   padding: 40px 20px; /* Padding around the gallery content */
+  flex: 1 0 auto; /* Allow main content to grow and push footer to bottom */
 }
 
+/* Image boxes with flexible width to allow for multiple columns */
 .image-box {
   position: relative;
-  flex: 1 1 calc(45% - 40px); /* Images will take up a third of the row with spacing */
-  margin: 0px; /* Margin to add space between image boxes */
+  flex: 1 1 calc(45% - 20px); /* Set the base width of each image to take 50% of the container with spacing */
+  max-width: 800px; /* Updated to be twice as large */
+  margin: 10px; /* Margin between images */
   box-sizing: border-box;
   overflow: hidden; /* Ensure content doesn't overflow the box */
   transition: transform 0.3s ease;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   .image-box {
-    flex: 1 1 calc(50% - 40px); /* Images take up half the row on medium screens */
+    flex: 1 1 calc(33.333% - 20px); /* Set width to 33.33% for medium screens */
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .image-box {
-    flex: 1 1 calc(100% - 40px); /* Images take up full width on small screens */
+    flex: 1 1 calc(50% - 20px); /* Set width to 50% for small screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .image-box {
+    flex: 1 1 calc(100% - 20px); /* Set width to 100% for very small screens */
   }
 }
 
@@ -114,7 +136,7 @@ nav {
 .image-box:hover img,
 .image-box:hover video {
   filter: brightness(40%); /* Darken the image on hover */
-  transform: scale(1); /* Slight zoom-in effect on hover */
+  transform: scale(1.05); /* Slight zoom-in effect on hover */
 }
 
 .overlay-text {
@@ -122,14 +144,31 @@ nav {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); /* Center the text */
-  font-size: 3vw;
+  font-size: 24px; /* Base font size */
   font-weight: bold;
   color: #fff;
   text-align: center;
-  padding: 10px 20px;
   border-radius: 5px;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 1200px) {
+  .overlay-text {
+    font-size: 20px; /* Adjust font size for smaller screens */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .overlay-text {
+    font-size: 18px; /* Adjust font size for tablet-sized screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .overlay-text {
+    font-size: 16px; /* Adjust font size for mobile-sized screens */
+  }
 }
 
 .image-box:hover .overlay-text {
@@ -181,12 +220,12 @@ nav {
   cursor: pointer;
   width: 25px;
   height: 31px;
-  background-color: rgba(200, 200, 200, 0.5); /* Black background with transparency */
+  background-color: rgba(200, 200, 200, 0.5); /* Background with transparency */
   border-radius: 8px;
 }
 
 .close:hover {
-  background-color: rgba(200, 200, 200, 1); /* Black background with transparency */
+  background-color: rgba(200, 200, 200, 1); /* Hover effect on close button */
 }
 
 /* Modal for Enlarged Media */

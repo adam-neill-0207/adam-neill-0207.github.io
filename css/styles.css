@@ -1,148 +1,292 @@
 /* General styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase; /* All text in uppercase */
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
 }
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+/* Navigation Bar */
+nav {
+  background-color: #000;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; /* Name on left, links on right */
+  align-items: center;
 }
 
-nav ul {
-    list-style-type: none;
+/* Left-side for the name */
+.nav-left {
+  display: flex;
+  align-items: center;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 20px;
+.nav-item {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 20px;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
+.nav-item:hover {
+  color: #ddd; /* Change color on hover */
 }
 
-nav ul li a:hover {
-    color: #ff6347;
+/* Right-side for the links */
+.nav-right {
+  display: flex;
+  gap: 20px; /* Space between links */
+  align-items: center;
 }
 
-/* Main Image Section */
-#main-image {
-    text-align: center;
-    margin-top: 20px;
+.nav-link {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 20px;
 }
 
-#main-image img {
-    width: 80%;
-    height: auto;
-    border-radius: 10px;
+.nav-link:hover {
+  color: #ddd; /* Change color on hover */
+  text-decoration: underline; /* Underline only on hover */
 }
 
-/* Portfolio Section */
-#portfolio {
-    padding: 50px;
-    text-align: center;
-    position: relative;
+/* Main content (image and video gallery) */
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px 20px; /* Added padding to separate from navigation */
 }
 
-/* Gallery Styles */
-.gallery-container {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
+.image-box {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* Set max width for better responsiveness */
+  height: auto;
+  flex: 1 1 calc(50% - 40px); /* Responsive: each takes half-width with a gap */
+  box-sizing: border-box;
 }
 
-.gallery-wrapper {
-    width: 80%;
-    overflow-x: scroll;
-    display: flex;
-    scroll-behavior: smooth;
+.image-box img, .image-box video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.gallery {
-    display: flex;
-    flex-wrap: nowrap;
-    position: relative;
+.overlay-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.gallery-item {
-    min-width: 300px;
-    margin: 10px;
-    flex-shrink: 0;
-    transition: transform 0.3s;
-}
-
-.gallery-item img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.gallery-item img:hover {
-    transform: scale(1.05);
-}
-
-/* Arrows */
-.arrow {
-    cursor: pointer;
-    font-size: 36px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    padding: 10px;
-    border-radius: 50%;
-}
-
-.left-arrow {
-    left: 10px;
-}
-
-.right-arrow {
-    right: 10px;
-}
-
-/* Hide scrollbar */
-.gallery-wrapper::-webkit-scrollbar {
-    display: none;
+.image-box:hover .overlay-text {
+  opacity: 1;
 }
 
 /* Modal Styles */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensure no overflow */
 }
 
 .modal-content {
-    background-color: #333;
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 90vh; /* Limit height to 90% of the viewport height */
+  overflow-y: auto; /* Enable scrolling if content exceeds max-height */
+  text-align: center;
+  position: relative;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #333;
+  z-index: 20;
+  font-size: 24px;
+  cursor: pointer;
+  width: 25px;
+  height: 31px;
+  background-color: rgba(200, 200, 200, 0.5); /* Black background with transparency */
+  border-radius: 8px;
 }
 
-.close:hover, .close:focus {
-    color: #ff6347;
-    cursor: pointer;
+.close:hover {
+  background-color: rgba(200, 200, 200, 1); /* Black background with transparency */
+}
+
+/* Modal for Enlarged Media */
+.modal-content.media-content {
+  width: 90%;
+  max-width: 900px;
+  height: auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 80vh; /* Limit height to 80% of the viewport height */
+}
+
+#media-container {
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#media-container img, #media-container video {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain; /* Ensures that content fits inside the container while maintaining aspect ratio */
+}
+
+/* About Modal Styles */
+.about-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.about-text p {
+  text-transform: none;
+  font-size: 16px;
+  color: #333;
+}
+
+.about-image {
+  flex: 1;
+  text-align: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensures the image fills the circle */
+}
+
+.download-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.download-link:hover {
+  background-color: #444;
+}
+
+/* Gallery Title Styling */
+.gallery-title {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.gallery-title h1 {
+  font-size: 36px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+/* Contact Modal Information Styling */
+.contact-info {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.linkedin {
+  margin-bottom: 15px;
+}
+
+.linkedin a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.linkedin a:hover {
+  color: #444;
+}
+
+.linkedin-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.email {
+  font-size: 16px;
+}
+
+.email a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.email a:hover {
+  text-decoration: underline;
 }

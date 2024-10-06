@@ -1,65 +1,77 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Modal logic remains the same...
+// Open modal buttons for About/Contact
+const openModalBtns = document.querySelectorAll('.open-modal');
 
-    // Gallery scrolling logic
-    const galleryWrapper = document.querySelector('.gallery-wrapper');
-    const gallery = document.querySelector('.gallery');
-    const leftArrow = document.querySelector('.left-arrow');
-    const rightArrow = document.querySelector('.right-arrow');
-    let scrollSpeed = 2;
-    let autoScrollInterval;
+openModalBtns.forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+        const modalId = this.getAttribute('data-modal');
+        const modal = document.getElementById(modalId);
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    });
+});
 
-    // Duplicate gallery items to enable infinite loop
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    gallery.innerHTML += gallery.innerHTML; // Duplicate the gallery items
+// Close buttons for About/Contact and Media Modal
+const closeModalBtns = document.querySelectorAll('.close');
 
-    // Adjust width of the gallery to fit both original and duplicated items
-    gallery.style.width = `${galleryItems.length * 2 * galleryItems[0].clientWidth}px`;
-
-    // Auto-scrolling function
-    function autoScroll() {
-        autoScrollInterval = setInterval(() => {
-            galleryWrapper.scrollLeft += scrollSpeed;
-
-            // If reached the end of the original items, reset to the beginning
-            if (galleryWrapper.scrollLeft >= gallery.scrollWidth / 2) {
-                galleryWrapper.scrollLeft = 0;
+closeModalBtns.forEach(button => {
+    button.addEventListener('click', function() {
+        const modal = button.closest('.modal'); // Get the closest modal related to this button
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            if (modal.id === 'media-modal') {
+                const mediaContainer = document.getElementById('media-container');
+                mediaContainer.innerHTML = ''; // Remove media to stop playing
             }
-        }, 20); // Adjust interval for smoother scrolling if needed
+        }, 400);
+    });
+});
+
+// Open enlarged media in modal
+const mediaBoxes = document.querySelectorAll('.image-box img, .image-box video');
+
+mediaBoxes.forEach(media => {
+    media.addEventListener('click', function() {
+        const modal = document.getElementById('media-modal');
+        const mediaContainer = document.getElementById('media-container');
+        mediaContainer.innerHTML = ''; // Clear previous content
+
+        let newMedia;
+
+        if (media.tagName === 'IMG') {
+            // If clicked media is an image, create an image element
+            newMedia = document.createElement('img');
+            newMedia.src = media.src;
+        } else if (media.tagName === 'VIDEO') {
+            // If clicked media is a video, create a video element
+            newMedia = document.createElement('video');
+            newMedia.src = media.src;
+            newMedia.controls = true;
+            newMedia.autoplay = true; // Automatically play the video when modal opens
+        }
+
+        mediaContainer.appendChild(newMedia);
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    });
+});
+
+// Close modal when clicking outside the modal content
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal')) {
+        const modal = event.target;
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            if (modal.id === 'media-modal') {
+                const mediaContainer = document.getElementById('media-container');
+                mediaContainer.innerHTML = ''; // Remove media to stop playing
+            }
+        }, 400);
     }
-
-    // Start auto-scrolling
-    autoScroll();
-
-    // Stop scrolling on hover over gallery or arrows
-    galleryWrapper.addEventListener('mouseover', () => clearInterval(autoScrollInterval));
-    galleryWrapper.addEventListener('mouseout', autoScroll);
-    leftArrow.addEventListener('mouseover', () => clearInterval(autoScrollInterval));
-    rightArrow.addEventListener('mouseover', () => clearInterval(autoScrollInterval));
-
-    // Left arrow scrolling
-    leftArrow.addEventListener('mouseover', () => {
-        autoScrollInterval = setInterval(() => {
-            galleryWrapper.scrollLeft -= 5;
-            if (galleryWrapper.scrollLeft <= 0) {
-                galleryWrapper.scrollLeft = gallery.scrollWidth / 2;
-            }
-        }, 20);
-    });
-
-    // Right arrow scrolling
-    rightArrow.addEventListener('mouseover', () => {
-        autoScrollInterval = setInterval(() => {
-            galleryWrapper.scrollLeft += 5;
-            if (galleryWrapper.scrollLeft >= gallery.scrollWidth / 2) {
-                galleryWrapper.scrollLeft = 0;
-            }
-        }, 20);
-    });
-
-    // Reset scrolling on resize
-    window.addEventListener('resize', () => {
-        clearInterval(autoScrollInterval);
-        autoScroll();
-    });
 });

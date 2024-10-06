@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Graphic Design Gallery</title>
+    <link rel="stylesheet" href="css/fonts/fonts.css"> <!-- Font import -->
+    <link rel="stylesheet" href="css/styles.css"> <!-- Main Stylesheet -->
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="nav-item">Adam Neill</a> <!-- Your name now links back to main page -->
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-link open-modal" data-modal="modal-about">About</a>
+            <a href="#" class="nav-link open-modal" data-modal="modal-contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Gallery Title -->
+    <section class="gallery-title">
+        <h1>Broadcast story-telling</h1>
+    </section>
+
+    <!-- Gallery Content -->
+    <section class="main-content">
+      <div class="image-box">
+          <video src="media/story-telling/channel-4-danger-zone.mp4"></video>
+          <div class="overlay-text">Cricket Complex Story - Andrew Strauss - Channel 4</div>
+      </div>
+      <div class="image-box">
+          <video src="media/story-telling/sky-tennis-4th-wall.mp4"></video>
+          <div class="overlay-text">Tennis Complex Story - Tim Henman - Sky</div>
+      </div>
+      <div class="image-box">
+          <video src="media/story-telling/cricket-bounce-comparison.mp4"></video>
+          <div class="overlay-text">Cricket Complex Story - New Zealand</div>
+      </div>
+      <div class="image-box">
+          <video src="media/story-telling/cricket-world-cup.mp4"></video>
+          <div class="overlay-text">Cricket Complex Story - World Cup</div>
+      </div>
+      <div class="image-box">
+          <video src="media/story-telling/ipl-yorker-graph.mp4"></video>
+          <div class="overlay-text">Cricket - Graph Data 1</div>
+      </div>
+      <div class="image-box">
+          <video src="media/story-telling/scatter-graph.mp4"></video>
+          <div class="overlay-text">Cricket - Graph Data 2</div>
+      </div>
+      <div class="image-box">
+          <video src="media/story-telling/sky-tennis-graph.mp4"></video>
+          <div class="overlay-text">Tennis Graph - Sky</div>
+      </div>
+    </section>
+
+    <!-- Modal for About Section -->
+    <div id="modal-about" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modal-about">&times;</span>
+            <div class="about-content">
+                <div class="about-text">
+                    <h1>Adam Neill</h1>
+                    <h2>About Me</h2>
+                    <p>I'm a Creative Manager with 7 years experience designing and creating broadcast data graphics, storytelling and managing artists. I currently lead the creative direction of the 2D & 3D Art Teams at Hawk-Eye Innovations, as well as designing, developing and delivering 2D graphics on various projects.</p>
+                    <p>Earlier in my career at Hawk-Eye, I operated on some of the most watched sporting events in the world, providing visual data analysis and story-telling services on live cricket, and occasionally on other sports.</p>
+                    <!-- Updated Download Link -->
+                    <a href="links/CV-Sept24.pdf" target="_blank" class="download-link">See My CV</a>
+                </div>
+                <div class="about-image">
+                    <img src="media/profile-photo.png" alt="Adam Neill">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Contact Section -->
+    <div id="modal-contact" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modal-contact">&times;</span>
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <div class="linkedin">
+                    <a href="www.linkedin.com/in/adam-neill-343834a4" target="_blank">
+                        <img src="media/linkedin-logo.png" alt="LinkedIn Logo" class="linkedin-logo">
+                        Connect with me on LinkedIn
+                    </a>
+                </div>
+                <div class="email">
+                    <p>Email: <a href="mailto:adam.neill0207@gmail.com">adam.neill0207@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Enlarged Media -->
+    <div id="media-modal" class="modal">
+        <div class="modal-content media-content">
+            <span class="close" data-close="media-modal">&times;</span>
+            <div id="media-container"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/scripts.js"></script>
+
+</body>
+</html>

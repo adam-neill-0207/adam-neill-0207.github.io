@@ -82,7 +82,7 @@ nav {
 .image-box {
   position: relative;
   flex: 1 1 calc(33.333% - 40px); /* Images will take up a third of the row with spacing */
-  max-width: 400px; /* Max width to keep a neat layout */
+  /* max-width: 400px; Max width to keep a neat layout */
   margin: 10px; /* Margin to add space between image boxes */
   box-sizing: border-box;
 }

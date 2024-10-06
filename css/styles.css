@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Navigation Bar */
@@ -55,23 +56,47 @@ nav {
   text-decoration: underline; /* Underline only on hover */
 }
 
-/* Main content (image and video gallery) */
+/* Home button in navigation */
+.nav-right .home-link {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.nav-right .home-link:hover {
+  color: #ddd;
+  text-decoration: underline;
+}
+
+/* Main content (image and video gallery) - Responsive with padding */
 .main-content {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 40px 20px; /* Added padding to separate from navigation */
+  justify-content: center; /* Center the images */
+  padding: 40px 20px; /* Padding around the gallery content */
 }
 
 .image-box {
   position: relative;
-  width: 100%;
-  max-width: 400px; /* Set max width for better responsiveness */
-  height: auto;
-  flex: 1 1 calc(50% - 40px); /* Responsive: each takes half-width with a gap */
+  flex: 1 1 calc(33.333% - 40px); /* Images will take up a third of the row with spacing */
+  max-width: 400px; /* Max width to keep a neat layout */
+  margin: 10px; /* Margin to add space between image boxes */
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 1024px) {
+  .image-box {
+    flex: 1 1 calc(50% - 40px); /* Images take up half the row on medium screens */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .image-box {
+    flex: 1 1 calc(100% - 40px); /* Images take up full width on small screens */
+  }
 }
 
 .image-box img, .image-box video {
@@ -80,6 +105,7 @@ nav {
   display: block;
   border-radius: 8px;
   cursor: pointer;
+  object-fit: cover; /* Ensures images fill the box while maintaining aspect ratio */
 }
 
 .overlay-text {

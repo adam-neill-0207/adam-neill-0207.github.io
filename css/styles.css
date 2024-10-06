@@ -4,7 +4,8 @@ body {
   text-transform: uppercase; /* All text in uppercase */
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(245,245,245,1) 0%, rgba(220,220,220,1) 100%);
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
@@ -76,7 +77,6 @@ nav {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center; /* Center the images */
-  background: linear-gradient(180deg, rgba(200,200,200,1) 0%, rgba(150,150,150,1) 100%);
   padding: 40px 20px; /* Padding around the gallery content */
 }
 

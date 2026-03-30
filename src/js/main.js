@@ -5,11 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('header, section');
     fadeElements.forEach((element, index) => {
         element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
         setTimeout(() => {
             element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
         }, 200 * index);
     });
 
@@ -35,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < text.length) {
                 introText.textContent += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 50);
+                setTimeout(typeWriter, 20);
             }
         };
         typeWriter();
@@ -72,17 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Interactive background effect (placeholder for now)
-    const header = document.querySelector('header');
-    header.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        header.style.backgroundPosition = `${x * 20}px ${y * 20}px`;
-    });
-
     // Project cards hover effect (assuming you'll add project cards)
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
+        const content = card.querySelector('.project-content');
         card.addEventListener('mouseenter', () => {
             card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
             card.style.transform = 'translateY(-10px)';
